@@ -4,7 +4,7 @@ Kotlin API testing template using cucumber + retrofit2 + Junit
 
 ## Run demo rest-api-app
 
-See 
+See [rest-api-app/README.md](rest-api-app/README.md)
 
 ## Run the tests using gradle
 
