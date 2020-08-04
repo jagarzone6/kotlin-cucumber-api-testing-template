@@ -10,7 +10,8 @@ class Runner {
 
     companion object {
         @BeforeClass()
-        @JvmStatic fun setUp() {
+        @JvmStatic
+        fun setUp() {
             Retrofit.build("http://localhost:8080")
         }
     }

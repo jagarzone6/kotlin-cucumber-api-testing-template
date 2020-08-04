@@ -1,13 +1,12 @@
 package api
 
-import com.google.gson.JsonElement
 import model.UserAuth
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
-import support.Retrofit
+import support.Retrofit.instance as retrofit
 
 interface Auth {
 
@@ -21,7 +20,7 @@ interface Auth {
 
     companion object {
         fun authService(): Auth {
-            return Retrofit.instance!!.create(Auth::class.java)
+            return retrofit!!.create(Auth::class.java)
         }
     }
 }

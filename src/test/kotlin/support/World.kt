@@ -1,17 +1,11 @@
 package support
 
-import utils.SingletonFactory
-import retrofit2.Call
 import retrofit2.Response
+import utils.SingletonFactory
 
 class World {
-    var latestResponse: Any? = null
+    var latestResponse: Response<*>? = null
     var bearerToken: String = ""
-
-    fun <T>makeApiCall(call: Call<T>): Response<T>? {
-        latestResponse = call.execute()
-        return latestResponse as Response<T>
-    }
 
     companion object : SingletonFactory<World> {
 

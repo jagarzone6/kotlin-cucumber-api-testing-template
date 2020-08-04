@@ -7,7 +7,8 @@ import utils.SingletonFactory
 
 object Retrofit : SingletonFactory<Retrofit> {
     override var instance: Retrofit? = null
-    @JvmStatic fun build(baseUrl: String) {
+    @JvmStatic
+    fun build(baseUrl: String) {
         instance = Retrofit.Builder()
                 // here we set the base url of our API
                 .baseUrl(baseUrl)
@@ -15,9 +16,5 @@ object Retrofit : SingletonFactory<Retrofit> {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         println("Created retrofit instance: $instance")
-    }
-
-    override fun clear() {
-        instance = null
     }
 }

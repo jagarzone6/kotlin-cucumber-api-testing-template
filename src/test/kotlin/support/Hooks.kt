@@ -9,14 +9,11 @@ class Hooks : En {
 
         Before { ->
             println("BeforeScenario")
-            println(World.instance!!.bearerToken)
         }
 
         After { scenario: Scenario ->
             println("AfterScenario")
-            println(World.instance!!.bearerToken)
             World.clear()
-            scenario.attach("test data", "text/plain", "data")
         }
     }
 }
