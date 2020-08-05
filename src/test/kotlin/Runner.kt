@@ -5,7 +5,9 @@ import org.junit.runner.RunWith
 import support.Retrofit
 
 @RunWith(Cucumber::class)
-@CucumberOptions(plugin = ["pretty", "json:build/cucumber/report.json", "de.monochromata.cucumber.report.PrettyReports:build/cucumber/pretty-cucumber"])
+@CucumberOptions(
+        plugin = ["pretty", "json:build/cucumber/report.json",
+            "de.monochromata.cucumber.report.PrettyReports:build/cucumber/pretty-cucumber"])
 class Runner {
 
     companion object {

@@ -1,6 +1,6 @@
 package steps
 
-import api.Auth
+import api.AuthI.Companion.authService
 import utils.makeApiCall
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
@@ -18,15 +18,22 @@ class AuthSteps : En {
         }
 
         Given("I am registered in the app with:") { credentialsTable: DataTable ->
-            val credentials: List<UserAuth> = credentialsTable.asList(UserAuth::class.java)
-            val res = makeApiCall(Auth.authService().signUp(credentials[0]))
+            val res = signUp(credentialsTable)
             assertTrue(res.code() == 200 || res.code() == 403)
         }
 
+        Given("I am logged in the app") { credentialsTable: DataTable ->
+            signUp(credentialsTable)
+            val res = logIn(credentialsTable)
+            assertEquals(200, res.code())
+        }
+
+        Given("I am not logged in the app") { ->
+            world!!.bearerToken = ""
+        }
+
         When("I login with credentials:") { credentialsTable: DataTable ->
-            val credentials: List<UserAuth> = credentialsTable.asList(UserAuth::class.java)
-            val res = makeApiCall(Auth.authService().login(credentials[0]))
-            world!!.bearerToken = res.headers().get("Authorization").toString()
+            logIn(credentialsTable)
         }
 
         Then("I should be logged in successfully") { ->
@@ -34,10 +41,17 @@ class AuthSteps : En {
             assertEquals(200, res.code())
         }
 
-        Then("Login should be rejected with status code {int}") { statusCode: Integer ->
-            val res: Response<ResponseBody> = world!!.latestResponse as Response<ResponseBody>
-            assertEquals(statusCode, res.code())
-        }
-
     }
+}
+
+val signUp = fun(credentialsTable: DataTable): Response<*> {
+    val credentials: List<UserAuth> = credentialsTable.asList(UserAuth::class.java)
+    return makeApiCall(authService().signUp(credentials[0]))
+}
+
+val logIn = fun(credentialsTable: DataTable): Response<*> {
+    val credentials: List<UserAuth> = credentialsTable.asList(UserAuth::class.java)
+    val res = makeApiCall(authService().login(credentials[0]))
+    world!!.bearerToken = res.headers().get("Authorization").toString()
+    return res
 }

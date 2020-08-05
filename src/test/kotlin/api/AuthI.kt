@@ -8,7 +8,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 import support.Retrofit.instance as retrofit
 
-interface Auth {
+interface AuthI {
 
     @Headers("Content-Type: application/json")
     @POST("/sign-up")
@@ -19,8 +19,8 @@ interface Auth {
     fun login(@Body userAuth: UserAuth): Call<ResponseBody>
 
     companion object {
-        fun authService(): Auth {
-            return retrofit!!.create(Auth::class.java)
+        fun authService(): AuthI {
+            return retrofit!!.create(AuthI::class.java)
         }
     }
 }

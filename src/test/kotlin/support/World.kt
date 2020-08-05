@@ -6,6 +6,7 @@ import utils.SingletonFactory
 class World {
     var latestResponse: Response<*>? = null
     var bearerToken: String = ""
+    var customerId: Int? = null
 
     companion object : SingletonFactory<World> {
 

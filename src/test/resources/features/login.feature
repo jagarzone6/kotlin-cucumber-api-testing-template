@@ -26,3 +26,12 @@ Feature: Login
       |          | Hellesoy | 401  |
       | Aslak    |          | 401  |
       |          |          | 401  |
+
+  Scenario: Try login been already logged
+    And I login with credentials:
+      | username | password |
+      | Aslak    | Hellesoy |
+    When I login with credentials:
+      | username | password |
+      | Aslak    | Hellesoy |
+    Then I should be logged in successfully
