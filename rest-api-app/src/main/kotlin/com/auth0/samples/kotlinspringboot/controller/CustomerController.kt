@@ -19,8 +19,10 @@ class CustomerController(val repository: CustomerRepository) {
 	fun findAll() = repository.findAll()
 
 	@PostMapping
-	fun addCustomer(@RequestBody customer: Customer)
-			= repository.save(customer)
+	fun addCustomer(@RequestBody customer: Customer): Customer {
+		println("NEW customer: '"+customer.firstName + "' '" + customer.lastName+"'")
+		return repository.save(customer)
+	}
 
 	@PutMapping("/{id}")
 	fun updateCustomer(@PathVariable id: Long, @RequestBody customer: Customer) {

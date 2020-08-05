@@ -20,7 +20,6 @@ open class UserDetailsServiceImpl(val userRepository: UserRepository) : UserDeta
 	}
 
 	fun save(user: ApplicationUser) {
-		print("NEW USER: "+user.username + " " + user.password)
 		try {
 			loadUserByUsername(user.username)
 		} catch (e: UsernameNotFoundException){
