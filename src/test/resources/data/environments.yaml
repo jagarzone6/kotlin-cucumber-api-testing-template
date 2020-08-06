@@ -1,0 +1,4 @@
+dev:
+  baseUrl: "http://localhost:8080"
+qa:
+  baseUrl: "http://localhost:8080"
