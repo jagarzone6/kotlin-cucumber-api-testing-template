@@ -1,6 +1,6 @@
-Feature: Create customer
+Feature: Update customer
   As a user of my demo rest-api-app
-  I want to create customers
+  I want to update customers info
   So that I can ...
 
   Background:
