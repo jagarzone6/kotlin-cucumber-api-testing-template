@@ -7,7 +7,8 @@ import support.Retrofit
 @RunWith(Cucumber::class)
 @CucumberOptions(
         plugin = ["pretty", "json:build/cucumber/report.json",
-            "de.monochromata.cucumber.report.PrettyReports:build/cucumber/pretty-cucumber"])
+            "de.monochromata.cucumber.report.PrettyReports:build/cucumber/pretty-cucumber"],
+        tags = "")
 class Runner {
 
     companion object {

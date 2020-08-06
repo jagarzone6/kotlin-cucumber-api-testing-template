@@ -1,7 +1,6 @@
 package api
 
 import model.Customer
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import support.Retrofit.instance as retrofit
@@ -14,6 +13,10 @@ interface CustomerI {
 
     @GET("/customers/{id}")
     fun get(@Path(value = "id") id: String, @Header("Authorization") authorization: String): Call<Customer>
+
+    @PUT("/customers/{id}")
+    @Headers("Content-Type: application/json")
+    fun update(@Body customer: Customer, @Path(value = "id") id: String, @Header("Authorization") authorization: String): Call<Unit>
 
     companion object {
         fun customerService(): CustomerI {

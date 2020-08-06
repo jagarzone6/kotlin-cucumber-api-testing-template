@@ -26,6 +26,11 @@ class CustomerSteps : En {
             }
         }
 
+        When("I update customer information") { customerTable: DataTable ->
+            val customers: List<Customer> = customerTable.asList(Customer::class.java)
+            makeApiCall(customerService().update(customers[0], world?.customerId.toString(), world?.bearerToken.toString()))
+        }
+
         Then("I should be able to see customer's data") { customerTable: DataTable ->
             val expectedCustomers: List<Customer> = customerTable.asList(Customer::class.java)
             val res: Response<*> = world!!.latestResponse as Response<*>
